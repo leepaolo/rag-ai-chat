@@ -72,5 +72,5 @@ Format:
 - Get the scaffold and the shared Claude Code setup reviewed and merged via PR.
 
 **Next**
-- [ ] Set the GitHub default branch to `main` (GitHub picked `chore/switch-to-pnpm` because it was pushed first).
+- [x] Set the GitHub default branch to `main` (GitHub picked `chore/switch-to-pnpm` because it was pushed first).
 - [ ] Merge PR #1.
