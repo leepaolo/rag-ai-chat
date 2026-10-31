@@ -73,4 +73,4 @@ Format:
 
 **Next**
 - [x] Set the GitHub default branch to `main` (GitHub picked `chore/switch-to-pnpm` because it was pushed first).
-- [ ] Merge PR #1.
+- [ ] Merge PR #2 (replaces #1, which closed when the branch was renamed to `dev-01`).
