@@ -61,3 +61,16 @@ Format:
 **Next**
 - [ ] Update `.claude/settings.json` permissions (`npm run *`, `npx tsc`) to the pnpm equivalents; optionally switch the hooks to `pnpm exec`.
 - [ ] Decide on `pnpm approve-builds` for `unrs-resolver` (its build script was skipped).
+
+## 2026-10-31: Publish repo to GitHub and open first PR
+
+**Changed**
+- Added remote `origin` (https://github.com/leepaolo/rag-ai-chat) and pushed `main` (initial commit) and `chore/switch-to-pnpm`.
+- Opened PR #1: chore: switch to pnpm and add Claude Code project setup.
+
+**Why**
+- Get the scaffold and the shared Claude Code setup reviewed and merged via PR.
+
+**Next**
+- [ ] Set the GitHub default branch to `main` (GitHub picked `chore/switch-to-pnpm` because it was pushed first).
+- [ ] Merge PR #1.
