@@ -226,3 +226,13 @@ Format:
 
 **Next**
 - [ ] D3: retrieval smoke test against the real `knowledge.db` (needs one query embedding, i.e. one paid API call).
+
+## 2026-11-02: RAG plan step D3 (retrieval smoke test)
+
+**Changed**
+- Added `scripts/check-retrieval.ts` and npm script `check:retrieval`: embeds 5 Italian questions in one paid call, queries the real `knowledge.db`, prints the top 3 chunks with scores and checks that the expected document ranks first, plus a category-filter check. Kept out of `pnpm test` because it calls the API.
+- Result: 5/5 expected documents ranked first, filter check passed. Top scores ranged 0.61-0.76; the lowest top-1 scores were for short, colloquial questions (disdetta 0.609, bonifico 0.607).
+- Marked D3 done in the RAG plan; Phase D complete.
+
+**Next**
+- [ ] E1: prompt builder. Keep the scores in mind for the G2 similarity threshold (answers likely start around 0.5-0.6).

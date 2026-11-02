@@ -98,7 +98,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/lib/vector-store.sqlite.ts`: carica i chunk (con filtro opzionale per categoria), calcola cosine similarity in JS, ritorna top-K.
       Commit: `feat: implement sqlite vector store with cosine similarity`
 
-- [ ] **D3. Test manuale del retrieval**
+- [x] **D3. Test manuale del retrieval**
       Script temporaneo o test in `src/lib/vector-store.test.ts` che verifica che una query di esempio ritorni i chunk attesi.
       Commit: `test: add retrieval smoke test`
 
