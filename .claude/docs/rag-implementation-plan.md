@@ -108,7 +108,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/lib/prompt.ts`: costruisce il system prompt con i chunk recuperati + istruzione anti-allucinazione ("rispondi solo con queste informazioni, altrimenti invita a contattare un operatore"). Tenere il prompt corto (si paga a ogni richiesta).
       Commit: `feat: add RAG prompt builder`
 
-- [ ] **E2. API route di chat**
+- [x] **E2. API route di chat**
       `src/app/api/chat/route.ts`: riceve messaggio → embed query (Voyage/OpenAI, non Claude) → `vectorStore.query` → prompt → `streamText` dell'AI SDK.
       **Modello: `claude-sonnet-5`** (vedi "Scelta dei modelli Claude" sopra). Impostare un `max_tokens` basso, output costa ~5x l'input.
       Commit: `feat: add chat API route with RAG pipeline`

@@ -248,3 +248,18 @@ Format:
 
 **Next**
 - [ ] E2: chat API route. Needs `@ai-sdk/anthropic` and `ANTHROPIC_API_KEY` in the local env file (the model `claude-sonnet-5` is paid per call).
+
+## 2026-11-02: RAG plan step E2 (chat API route)
+
+**Changed**
+- Added `src/app/api/chat/route.ts`: `POST` takes `{ messages }` (AI SDK UI messages), validates the last user text (400 if missing, 413 over 1000 chars), embeds it (OpenAI), queries the SQLite vector store (topK 4), builds the system prompt and streams `claude-sonnet-5` with `maxOutputTokens` 400. The retrieved sources are sent as message metadata (`{ sources }`) for the citations in F2.
+- Added `src/lib/chat.ts` (`lastUserText`, `toSources`, limits) and `src/lib/chat.test.ts`; added dependency `@ai-sdk/anthropic`. 23 tests, `tsc --noEmit` and ESLint pass. Marked E2 done in the RAG plan.
+- Verified by calling the handler directly with a `Request` (not through `next dev`): an in-domain question got a grounded answer ("entro 3 giorni"), an off-topic one got `FALLBACK_REPLY`. Two paid chat calls plus embeddings.
+
+**Notes**
+- `next dev` must be restarted after changing the local env file. A server was already running on port 3000 when checked, so the route has not been exercised through the dev server.
+- No conversation-history retrieval: only the last user message is embedded, so follow-ups that depend on earlier turns may retrieve poorly (revisit in G1).
+- Errors from the model are masked as "An error occurred." in the stream.
+
+**Next**
+- [ ] F1: chat page with `useChat`.
