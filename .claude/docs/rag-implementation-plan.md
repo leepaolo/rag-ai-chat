@@ -84,7 +84,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `scripts/ingest.ts`: legge `knowledge/**/*.md`, chunka, chiama l'API di embedding, upsert su SQLite. Eseguibile con `pnpm tsx scripts/ingest.ts`.
       Commit: `feat: add ingestion script`
 
-- [ ] **C3. Prima esecuzione e verifica**
+- [x] **C3. Prima esecuzione e verifica**
       Eseguire l'ingestion, verificare a mano (query SQL diretta) che `documents`/`chunks` siano popolate correttamente. Aggiungere script npm `"ingest": "tsx scripts/ingest.ts"`.
       Commit: `chore: add ingest npm script`
 

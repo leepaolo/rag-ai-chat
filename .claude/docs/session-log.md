@@ -191,3 +191,16 @@ Format:
 
 **Next**
 - [ ] C3: run the ingestion, verify the tables, add the `ingest` npm script.
+
+## 2026-11-02: RAG plan step C3 (first ingestion run)
+
+**Changed**
+- Added npm script `ingest` (`tsx --env-file=<local env file> scripts/ingest.ts`). Marked C3 done in the RAG plan; Phase C complete.
+- Ran `pnpm ingest` twice against OpenAI: 10 documents, 30 chunks, all embeddings 1536-dimensional, no orphan chunks. The second run left the counts unchanged (idempotent).
+
+**Notes**
+- `knowledge.db` is gitignored; re-run `pnpm ingest` after editing `knowledge/`.
+- Inspect with `sqlite3 knowledge.db` or `pnpm db:studio`.
+
+**Next**
+- [ ] D1: `VectorStore` interface.

@@ -9,6 +9,7 @@
     "lint": "eslint",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "ingest": "tsx --env-file=.env.local scripts/ingest.ts",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest"
   },
