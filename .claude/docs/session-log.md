@@ -162,3 +162,18 @@ Format:
 **Next**
 - [ ] C1: chunking logic with unit tests.
 - [ ] pnpm printed a peer-dependency warning on install; not investigated.
+
+## 2026-11-02: RAG plan step C1 (chunking)
+
+**Changed**
+- Added `src/lib/chunk.ts` (`chunkMarkdown(raw, source)`): parses frontmatter with `gray-matter`, takes the title from `# `, splits the body on `##` and returns `{ document, chunks }` (chunks without embedding). Chunk id is `<docId>#<position>`; empty sections are dropped; text before the first `##` becomes a heading-less chunk; missing `id`/`category`/title throws with the file name.
+- Added `src/lib/chunk.test.ts` (7 tests, including a check that all files in `knowledge/` chunk cleanly with unique ids).
+- Renamed `vitest.config.ts` to `.mts` (separate commit) to silence Vite's CommonJS warning.
+- Marked C1 done in the RAG plan. Tests, `tsc --noEmit` and ESLint pass.
+
+**Notes**
+- Chunk `content` is the section body only; C2 should build the embedding input from title + heading + content, since a body alone can lack context.
+- YAML parses unquoted dates into `Date`; `chunk.ts` converts them to `YYYY-MM-DD`.
+
+**Next**
+- [ ] C2: ingestion script (needs `OPENAI_API_KEY` for embeddings).

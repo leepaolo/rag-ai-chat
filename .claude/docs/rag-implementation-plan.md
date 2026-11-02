@@ -76,7 +76,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       Installare `vitest`, `vitest.config.ts` (ambiente node, alias `@/`), script `test` (`vitest run --passWithNoTests`) e `test:watch`. Serve prima di C1 perché `src/lib/` richiede test unitari.
       Commit: `chore: add vitest`
 
-- [ ] **C1. Chunking**
+- [x] **C1. Chunking**
       `src/lib/chunk.ts`: parsing frontmatter con `gray-matter` + split del body per heading `##`.
       Commit: `feat: add markdown chunking logic`
 
