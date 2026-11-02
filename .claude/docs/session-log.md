@@ -306,3 +306,11 @@ Format:
 **Next**
 - [ ] G2: threshold (proposed top-1 >= 0.40, no sources below it) and possibly lower `topK`.
 - [ ] Try the page in a browser (`pnpm dev`, `/assistente`) and add anything unexpected to the G1 notes.
+
+## 2026-11-02: G1 browser check
+
+**Changed**
+- Added the user's browser screenshot findings to the G1 notes in the RAG plan: UI and streaming work; irrelevant sources appear on answers (and on the off-topic fallback); markdown asterisks did not show this time.
+
+**Next**
+- [ ] G2: threshold (top-1 >= 0.40, no sources below it), lower `topK` or per-chunk cutoff, plain-text instruction in the prompt.

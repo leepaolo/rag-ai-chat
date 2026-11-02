@@ -155,6 +155,12 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
   - Il modello usa markdown (`**3 giorni**`) che la UI mostra letterale: o si chiede testo semplice nel prompt, o si renderizza il markdown.
   - I follow-up dipendono dalla cronologia perché si fa l'embedding solo dell'ultimo messaggio.
 
+  **Prova nel browser** (screenshot dell'utente, `/assistente`): la UI funziona, risposte in streaming, fonti raggruppate per documento con link e sezioni.
+  - "Cosa succede se non pago?" → risposta corretta; tra le fonti compare anche "Tempi di rimborso: Come avviene il pagamento", irrilevante.
+  - "E se vendo l'auto?" (dopo la domanda sul mancato pagamento) → risposta corretta (disdetta anticipata, rimborso del premio non goduto), ma 4 fonti di cui 2 irrilevanti (carrozzeria, documenti preventivo).
+  - "Come cucinare la carbonara?" → fallback corretto, **ma sotto compare comunque "Fonti consultate"** con 4 documenti: fuorviante, da risolvere in G2.
+  - Questa volta le risposte non contenevano markdown letterale: il problema `**…**` è intermittente.
+
 - [ ] **G2. Tuning soglie**
       Tarare `topK` e soglia minima di similarity (sotto soglia → risposta di fallback invece di forzare una risposta).
       Commit: `fix: tune topK and similarity threshold based on validation`
