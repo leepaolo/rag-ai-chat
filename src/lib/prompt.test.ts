@@ -36,6 +36,10 @@ describe("buildSystemPrompt", () => {
     expect(prompt).toContain(FALLBACK_REPLY);
   });
 
+  it("asks for plain text without markdown", () => {
+    expect(buildSystemPrompt([result({})])).toContain("senza markdown");
+  });
+
   it("marks the context as empty when nothing was retrieved", () => {
     expect(buildSystemPrompt([])).toContain("(nessuna informazione disponibile)");
   });

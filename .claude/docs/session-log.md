@@ -314,3 +314,24 @@ Format:
 
 **Next**
 - [ ] G2: threshold (top-1 >= 0.40, no sources below it), lower `topK` or per-chunk cutoff, plain-text instruction in the prompt.
+
+## 2026-11-02: RAG plan step G2 (threshold tuning)
+
+**Changed**
+- `src/lib/chat.ts`: `TOP_K` 4 -> 3; `MIN_TOP_SCORE` 0.40 and `RELEVANCE_WINDOW` 0.15; `selectRelevant` returns [] when the best chunk is under 0.40, otherwise keeps chunks within 0.15 of the best; `isFallbackReply`. Tuned on the 14 G1 questions.
+- `src/app/api/chat/route.ts`: when nothing is relevant, streams `FALLBACK_REPLY` directly (no model call, no sources).
+- `src/lib/prompt.ts`: asks for plain text without markdown.
+- `src/components/Chat.tsx`: hides "Fonti consultate" when the answer is exactly the fallback.
+- 32 tests, `tsc --noEmit` and ESLint pass. Marked G2 done in the RAG plan; Phase G complete.
+
+**Verified live** (handler called directly, 7 questions): carbonara and weather got the fixed fallback with 0 sources; "carrozzeria" and "franchigia" now show 1 source; "se non pago" 3 sources, all from the right document.
+
+**Notes**
+- Window deviates from the earlier idea of a fixed per-chunk floor (0.45): a fixed floor would drop everything when the best chunk is 0.42-0.45; a window relative to the best chunk avoids that.
+- "Quanto costa una polizza vita?" (top-1 0.56) passes the threshold; the model replies with the fallback and the UI hides the sources.
+- While the fallback text streams, sources can flash briefly before being hidden.
+- "Voglio disdire dopo un sinistro" now answers with the fallback sentence followed by partial information (mixed message).
+- Thresholds depend on the 10 invented FAQs and on `text-embedding-3-small`; re-run G1 when the real knowledge base replaces them.
+
+**Next**
+- [ ] H1: Neon setup (external; needs the user to create the project and `DATABASE_URL`).

@@ -161,7 +161,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
   - "Come cucinare la carbonara?" → fallback corretto, **ma sotto compare comunque "Fonti consultate"** con 4 documenti: fuorviante, da risolvere in G2.
   - Questa volta le risposte non contenevano markdown letterale: il problema `**…**` è intermittente.
 
-- [ ] **G2. Tuning soglie**
+- [x] **G2. Tuning soglie**
       Tarare `topK` e soglia minima di similarity (sotto soglia → risposta di fallback invece di forzare una risposta).
       Commit: `fix: tune topK and similarity threshold based on validation`
 

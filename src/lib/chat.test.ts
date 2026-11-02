@@ -1,7 +1,8 @@
 import type { UIMessage } from "ai";
 import { describe, expect, it } from "vitest";
 
-import { groupSources, lastUserText, toSources } from "@/lib/chat";
+import { groupSources, isFallbackReply, lastUserText, selectRelevant, toSources } from "@/lib/chat";
+import { FALLBACK_REPLY } from "@/lib/prompt";
 import type { VectorStoreResult } from "@/lib/vector-store";
 
 function message(role: UIMessage["role"], ...texts: string[]): UIMessage {
@@ -23,6 +24,53 @@ describe("lastUserText", () => {
     expect(lastUserText([])).toBeNull();
     expect(lastUserText([message("assistant", "ciao")])).toBeNull();
     expect(lastUserText([message("user", "   ")])).toBeNull();
+  });
+});
+
+function scored(...scores: number[]): VectorStoreResult[] {
+  return scores.map((score, i) => ({
+    chunkId: `d#${i}`,
+    documentId: "d",
+    documentTitle: "Titolo",
+    heading: `S${i}`,
+    content: "Testo.",
+    category: "polizza",
+    product: null,
+    sourceUrl: null,
+    score,
+  }));
+}
+
+describe("selectRelevant", () => {
+  it("returns nothing when the best chunk is below the minimum score", () => {
+    expect(selectRelevant(scored(0.39, 0.3))).toEqual([]);
+    expect(selectRelevant(scored(0.22, 0.19))).toEqual([]);
+  });
+
+  it("returns nothing for no results", () => {
+    expect(selectRelevant([])).toEqual([]);
+  });
+
+  it("accepts a best chunk exactly at the minimum score", () => {
+    expect(selectRelevant(scored(0.4))).toHaveLength(1);
+  });
+
+  it("drops chunks far below the best one", () => {
+    // Real case from G1: 0.70 then 0.42, 0.41.
+    expect(selectRelevant(scored(0.7, 0.42, 0.41)).map((r) => r.score)).toEqual([0.7]);
+  });
+
+  it("keeps chunks within the relevance window, in order", () => {
+    expect(selectRelevant(scored(0.78, 0.71, 0.67, 0.5)).map((r) => r.score)).toEqual([0.78, 0.71, 0.67]);
+  });
+});
+
+describe("isFallbackReply", () => {
+  it("matches only the exact fallback message", () => {
+    expect(isFallbackReply(FALLBACK_REPLY)).toBe(true);
+    expect(isFallbackReply(`  ${FALLBACK_REPLY}\n`)).toBe(true);
+    expect(isFallbackReply(`${FALLBACK_REPLY} Posso dirti che...`)).toBe(false);
+    expect(isFallbackReply("Hai 3 giorni.")).toBe(false);
   });
 });
 

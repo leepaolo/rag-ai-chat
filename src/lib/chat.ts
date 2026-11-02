@@ -1,9 +1,16 @@
 import type { UIMessage } from "ai";
 
+import { FALLBACK_REPLY } from "@/lib/prompt";
 import type { VectorStoreResult } from "@/lib/vector-store";
 
 export const MAX_QUESTION_LENGTH = 1000;
-export const TOP_K = 4;
+export const TOP_K = 3;
+// Tuned on the 14 validation questions (plan, step G1): legit questions had a
+// top-1 score >= 0.49, clearly off-topic ones <= 0.35. Revisit if the knowledge
+// base or the embedding model changes.
+export const MIN_TOP_SCORE = 0.4;
+// Chunks further than this below the best one are noise (e.g. 0.41 after 0.70).
+export const RELEVANCE_WINDOW = 0.15;
 // Low on purpose: a FAQ answer is short and output tokens cost ~5x input.
 export const MAX_OUTPUT_TOKENS = 400;
 
@@ -33,6 +40,22 @@ export type GroupedSource = {
   sourceUrl: string | null;
   headings: string[];
 };
+
+/**
+ * Keeps the chunks worth showing to the model. Returns [] when even the best
+ * chunk is below MIN_TOP_SCORE, meaning the question is outside the knowledge base.
+ * Expects `results` sorted best first, as `VectorStore.query` returns them.
+ */
+export function selectRelevant(results: VectorStoreResult[]): VectorStoreResult[] {
+  const best = results[0]?.score;
+  if (best === undefined || best < MIN_TOP_SCORE) return [];
+  return results.filter((result) => result.score >= best - RELEVANCE_WINDOW);
+}
+
+/** True when the answer is exactly the "no information" reply: its sources would mislead. */
+export function isFallbackReply(text: string): boolean {
+  return text.trim() === FALLBACK_REPLY;
+}
 
 /** Collapses chunk-level sources into one entry per document, keeping rank order. */
 export function groupSources(sources: ChatSource[]): GroupedSource[] {

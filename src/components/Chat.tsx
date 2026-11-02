@@ -4,7 +4,11 @@ import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import { useState, type SyntheticEvent } from "react";
 
-import { groupSources, type ChatMetadata, type ChatSource } from "@/lib/chat";
+import { groupSources, isFallbackReply, type ChatMetadata, type ChatSource } from "@/lib/chat";
+
+function messageText(message: UIMessage): string {
+  return message.parts.map((part) => (part.type === "text" ? part.text : "")).join("");
+}
 
 function Sources({ sources }: { sources: ChatSource[] }) {
   const groups = groupSources(sources);
@@ -64,7 +68,9 @@ export function Chat() {
                 </p>
               ) : null,
             )}
-            {message.role === "assistant" && <Sources sources={message.metadata?.sources ?? []} />}
+            {message.role === "assistant" && !isFallbackReply(messageText(message)) && (
+              <Sources sources={message.metadata?.sources ?? []} />
+            )}
           </li>
         ))}
         {status === "submitted" && <li className="text-label text-ink-muted">Sto cercando…</li>}

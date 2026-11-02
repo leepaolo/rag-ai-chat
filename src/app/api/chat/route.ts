@@ -1,5 +1,11 @@
 import { anthropic } from "@ai-sdk/anthropic";
-import { convertToModelMessages, streamText, type UIMessage } from "ai";
+import {
+  convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  streamText,
+  type UIMessage,
+} from "ai";
 
 import { db } from "@/db/client";
 import {
@@ -7,11 +13,12 @@ import {
   MAX_QUESTION_LENGTH,
   TOP_K,
   lastUserText,
+  selectRelevant,
   toSources,
   type ChatMetadata,
 } from "@/lib/chat";
 import { embedTexts } from "@/lib/embed";
-import { buildSystemPrompt } from "@/lib/prompt";
+import { FALLBACK_REPLY, buildSystemPrompt } from "@/lib/prompt";
 import { createSqliteVectorStore } from "@/lib/vector-store.sqlite";
 
 const CHAT_MODEL = "claude-sonnet-5";
@@ -36,7 +43,23 @@ export async function POST(request: Request) {
 
   // Embedding of the query uses OpenAI (Anthropic has no embeddings API).
   const [queryEmbedding] = await embedTexts([question]);
-  const results = await vectorStore.query(queryEmbedding, TOP_K);
+  const results = selectRelevant(await vectorStore.query(queryEmbedding, TOP_K));
+
+  // Off-topic question: answer with the fixed fallback, no model call and no sources.
+  if (results.length === 0) {
+    const empty: ChatMetadata = { sources: [] };
+    return createUIMessageStreamResponse({
+      stream: createUIMessageStream<UIMessage<ChatMetadata>>({
+        execute: ({ writer }) => {
+          writer.write({ type: "start", messageMetadata: empty });
+          writer.write({ type: "text-start", id: "fallback" });
+          writer.write({ type: "text-delta", id: "fallback", delta: FALLBACK_REPLY });
+          writer.write({ type: "text-end", id: "fallback" });
+          writer.write({ type: "finish" });
+        },
+      }),
+    });
+  }
 
   const result = streamText({
     model: anthropic(CHAT_MODEL),
