@@ -104,7 +104,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
 
 ## Fase E — Generazione e API
 
-- [ ] **E1. Prompt building**
+- [x] **E1. Prompt building**
       `src/lib/prompt.ts`: costruisce il system prompt con i chunk recuperati + istruzione anti-allucinazione ("rispondi solo con queste informazioni, altrimenti invita a contattare un operatore"). Tenere il prompt corto (si paga a ogni richiesta).
       Commit: `feat: add RAG prompt builder`
 

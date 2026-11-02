@@ -236,3 +236,15 @@ Format:
 
 **Next**
 - [ ] E1: prompt builder. Keep the scores in mind for the G2 similarity threshold (answers likely start around 0.5-0.6).
+
+## 2026-11-02: RAG plan step E1 (prompt builder)
+
+**Changed**
+- Added `src/lib/prompt.ts`: `buildSystemPrompt(chunks)` (short Italian instructions + numbered context `[n] Title - Heading`) and `FALLBACK_REPLY`, the wording shared with the future threshold fallback (G2). Empty retrieval yields an explicit "no information" context.
+- Added `src/lib/prompt.test.ts` (4 tests). 19 tests, `tsc --noEmit` and ESLint pass. Marked E1 done in the RAG plan.
+
+**Notes**
+- Scores and source URLs are not put in the prompt (tokens are paid per request); sources are shown by the UI in F2.
+
+**Next**
+- [ ] E2: chat API route. Needs `@ai-sdk/anthropic` and `ANTHROPIC_API_KEY` in the local env file (the model `claude-sonnet-5` is paid per call).
