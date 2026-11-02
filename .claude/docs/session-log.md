@@ -74,3 +74,16 @@ Format:
 **Next**
 - [x] Set the GitHub default branch to `main` (GitHub picked `chore/switch-to-pnpm` because it was pushed first).
 - [ ] Merge PR #2 (replaces #1, which closed when the branch was renamed to `dev-01`).
+
+## 2026-11-02: RAG plan step A1 (core dependencies)
+
+**Changed**
+- Added `ai`, `@ai-sdk/openai`, `drizzle-orm`, `better-sqlite3`, `gray-matter` and dev `drizzle-kit`, `@types/better-sqlite3` on branch `feat/rag-pipeline`.
+- Marked A1 done in `.claude/docs/rag-implementation-plan.md`.
+
+**Why**
+- First step of the RAG implementation plan.
+
+**Next**
+- [ ] Run `pnpm approve-builds` for `better-sqlite3` (its native build script was skipped; needed before B2/C2 can open a DB).
+- [ ] A2: folder structure.

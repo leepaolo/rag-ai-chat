@@ -39,7 +39,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
 
 ## Fase A — Setup base
 
-- [ ] **A1. Dipendenze core**
+- [x] **A1. Dipendenze core**
   Installare `ai`, `@ai-sdk/openai` (o provider scelto), `drizzle-orm`, `better-sqlite3`, `gray-matter`, `drizzle-kit` (dev), `@types/better-sqlite3` (dev).
   Commit: `chore: add RAG pipeline dependencies`
 
