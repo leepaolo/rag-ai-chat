@@ -293,3 +293,16 @@ Format:
 
 **Next**
 - [ ] G1: manual validation in the browser (direct, off-topic and ambiguous questions); decide on markdown rendering.
+
+## 2026-11-02: RAG plan step G1 (validation)
+
+**Changed**
+- Ran 14 questions (5 direct, 4 off-topic, 3 ambiguous, 1 follow-up, 1 prompt injection) through the chat route with a temporary script (deleted) and recorded the results table and observations in `.claude/docs/rag-implementation-plan.md` under G1. About 28 embedding calls and 14 chat calls.
+- Outcome: all direct questions answered correctly; off-topic and non-covered questions got the fallback; the injection attempt was refused. Weak spots: one inference beyond the context (disdetta after a sinistro), weak retrieval on follow-ups, noisy low-score chunks, markdown shown literally.
+
+**Why**
+- Gather evidence to tune `topK` and the similarity threshold in G2.
+
+**Next**
+- [ ] G2: threshold (proposed top-1 >= 0.40, no sources below it) and possibly lower `topK`.
+- [ ] Try the page in a browser (`pnpm dev`, `/assistente`) and add anything unexpected to the G1 notes.
