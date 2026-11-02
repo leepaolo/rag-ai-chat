@@ -213,3 +213,16 @@ Format:
 
 **Next**
 - [ ] D2: SQLite implementation with cosine similarity (with unit tests).
+
+## 2026-11-02: RAG plan step D2 (SQLite vector store)
+
+**Changed**
+- Added `src/lib/vector-store.sqlite.ts`: `cosineSimilarity` and `createSqliteVectorStore(db)`, which joins chunks with documents, filters by category/product, scores in JS and returns the top-K.
+- Added `src/lib/vector-store.sqlite.test.ts` (6 tests with hand-made vectors and an in-memory DB). Marked D2 done in the RAG plan. 15 tests, `tsc --noEmit` and ESLint pass.
+
+**Notes**
+- The factory takes the `db` as a parameter and does not import `src/db/client.ts`, so tests never open `knowledge.db`. Wiring to the real client is part of the driver switch (H5) or the chat route (E2).
+- The test DDL is written by hand and must follow `schema.sqlite.ts` if the schema changes.
+
+**Next**
+- [ ] D3: retrieval smoke test against the real `knowledge.db` (needs one query embedding, i.e. one paid API call).

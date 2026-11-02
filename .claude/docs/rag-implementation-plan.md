@@ -94,7 +94,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/lib/vector-store.ts`: interfaccia `VectorStore` (`query(embedding, topK, filter?)`).
       Commit: `feat: define VectorStore interface`
 
-- [ ] **D2. Implementazione SQLite**
+- [x] **D2. Implementazione SQLite**
       `src/lib/vector-store.sqlite.ts`: carica i chunk (con filtro opzionale per categoria), calcola cosine similarity in JS, ritorna top-K.
       Commit: `feat: implement sqlite vector store with cosine similarity`
 
