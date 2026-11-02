@@ -263,3 +263,18 @@ Format:
 
 **Next**
 - [ ] F1: chat page with `useChat`.
+
+## 2026-11-02: RAG plan step F1 (test chat page)
+
+**Changed**
+- Added `src/app/assistente/page.tsx` (server component with metadata title) and `src/components/Chat.tsx` (client component using `useChat` from `@ai-sdk/react`: message list, input, send button, "Sto cercando…" and error states). Styled only with design-system tokens.
+- Added dependency `@ai-sdk/react`. Marked F1 done in the RAG plan. `tsc --noEmit`, ESLint and 23 tests pass.
+- Checked that `/assistente` renders under `next dev` (HTTP 200, title, input and button in the HTML).
+
+**Notes**
+- The interactive flow (typing a question and watching the streamed answer) was not tried in a browser; the API route itself was verified in E2.
+- Answers are shown as plain text (`whitespace-pre-wrap`): the model's markdown (e.g. `**bold**`) appears literally. Decide whether to render markdown or ask the model for plain text.
+- Sources are in the message metadata but not shown yet (F2).
+
+**Next**
+- [ ] F2: show sources under each answer.

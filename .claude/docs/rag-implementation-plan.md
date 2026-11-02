@@ -115,7 +115,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
 
 ## Fase F — UI di test
 
-- [ ] **F1. Pagina assistente**
+- [x] **F1. Pagina assistente**
       `src/app/assistente/page.tsx`: UI minimale con `useChat` dell'AI SDK (input + lista messaggi, nessuno styling elaborato).
       Commit: `feat: add test chat page`
 

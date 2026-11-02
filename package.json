@@ -17,6 +17,7 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^4.0.94",
     "@ai-sdk/openai": "^4.0.106",
+    "@ai-sdk/react": "^4.0.163",
     "ai": "^7.0.159",
     "better-sqlite3": "^13.0.3",
     "drizzle-orm": "^0.45.4",
