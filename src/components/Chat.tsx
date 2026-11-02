@@ -2,7 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
-import { useState, type FormEvent } from "react";
+import { useState, type SyntheticEvent } from "react";
 
 import type { ChatMetadata } from "@/lib/chat";
 
@@ -12,7 +12,7 @@ export function Chat() {
 
   const busy = status === "submitted" || status === "streaming";
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     const text = input.trim();
     if (!text || busy) return;
