@@ -118,3 +118,14 @@ Format:
 
 **Next**
 - [ ] B2: db client factory (`src/db/client.ts`); needs `pnpm approve-builds` for `better-sqlite3` first.
+
+## 2026-11-02: RAG plan step B2 (db client factory)
+
+**Changed**
+- Added `src/db/client.ts`: picks the driver from `VECTOR_STORE_DRIVER` (default `sqlite`, file `knowledge.db`), reuses the connection across dev hot reloads, throws on unsupported drivers (postgres comes in H5).
+- Marked B2 done in the RAG plan. `tsc --noEmit` and ESLint pass.
+- `pnpm approve-builds` had nothing pending; `better-sqlite3` loads fine despite being in `ignoredBuiltDependencies`.
+
+**Next**
+- [ ] Tables are not created anywhere yet; decide how before C2 (e.g. `drizzle-kit push` with a `drizzle.config.ts`).
+- [ ] B3: first FAQ markdown files.

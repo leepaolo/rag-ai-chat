@@ -58,7 +58,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/db/schema.sqlite.ts` con tabelle `documents` e `chunks` (embedding come blob/JSON).
       Commit: `feat: add drizzle schema for documents and chunks (sqlite)`
 
-- [ ] **B2. Client DB**
+- [x] **B2. Client DB**
       `src/db/client.ts`: istanzia il client in base a `VECTOR_STORE_DRIVER`.
       Commit: `feat: add db client factory`
 
