@@ -119,7 +119,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/app/assistente/page.tsx`: UI minimale con `useChat` dell'AI SDK (input + lista messaggi, nessuno styling elaborato).
       Commit: `feat: add test chat page`
 
-- [ ] **F2. Visualizzazione fonti**
+- [x] **F2. Visualizzazione fonti**
       Mostrare sotto ogni risposta i chunk/fonti usati (`source_url` dal frontmatter), per trust e debug.
       Commit: `feat: show source citations in chat UI`
 

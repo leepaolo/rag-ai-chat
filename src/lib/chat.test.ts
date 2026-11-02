@@ -1,7 +1,7 @@
 import type { UIMessage } from "ai";
 import { describe, expect, it } from "vitest";
 
-import { lastUserText, toSources } from "@/lib/chat";
+import { groupSources, lastUserText, toSources } from "@/lib/chat";
 import type { VectorStoreResult } from "@/lib/vector-store";
 
 function message(role: UIMessage["role"], ...texts: string[]): UIMessage {
@@ -23,6 +23,28 @@ describe("lastUserText", () => {
     expect(lastUserText([])).toBeNull();
     expect(lastUserText([message("assistant", "ciao")])).toBeNull();
     expect(lastUserText([message("user", "   ")])).toBeNull();
+  });
+});
+
+describe("groupSources", () => {
+  it("groups chunks by document in first-seen order and dedupes headings", () => {
+    const source = (documentId: string, heading: string | null) => ({
+      documentId,
+      title: `Titolo ${documentId}`,
+      heading,
+      sourceUrl: null,
+    });
+
+    expect(
+      groupSources([source("a", "Uno"), source("b", null), source("a", "Due"), source("a", "Uno")]),
+    ).toEqual([
+      { documentId: "a", title: "Titolo a", sourceUrl: null, headings: ["Uno", "Due"] },
+      { documentId: "b", title: "Titolo b", sourceUrl: null, headings: [] },
+    ]);
+  });
+
+  it("returns an empty list for no sources", () => {
+    expect(groupSources([])).toEqual([]);
   });
 });
 

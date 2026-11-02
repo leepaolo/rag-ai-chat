@@ -4,7 +4,32 @@ import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import { useState, type SyntheticEvent } from "react";
 
-import type { ChatMetadata } from "@/lib/chat";
+import { groupSources, type ChatMetadata, type ChatSource } from "@/lib/chat";
+
+function Sources({ sources }: { sources: ChatSource[] }) {
+  const groups = groupSources(sources);
+  if (groups.length === 0) return null;
+
+  return (
+    <div className="mt-3 border-t border-border pt-2 text-label text-ink-muted">
+      <p>Fonti consultate</p>
+      <ul className="mt-1 flex flex-col gap-1">
+        {groups.map((group) => (
+          <li key={group.documentId}>
+            {group.sourceUrl ? (
+              <a href={group.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline">
+                {group.title}
+              </a>
+            ) : (
+              group.title
+            )}
+            {group.headings.length > 0 && <span>: {group.headings.join(", ")}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Chat() {
   const { messages, sendMessage, status, error } = useChat<UIMessage<ChatMetadata>>();
@@ -39,6 +64,7 @@ export function Chat() {
                 </p>
               ) : null,
             )}
+            {message.role === "assistant" && <Sources sources={message.metadata?.sources ?? []} />}
           </li>
         ))}
         {status === "submitted" && <li className="text-label text-ink-muted">Sto cercando…</li>}

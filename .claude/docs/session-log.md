@@ -278,3 +278,18 @@ Format:
 
 **Next**
 - [ ] F2: show sources under each answer.
+
+## 2026-11-02: RAG plan step F2 (source citations)
+
+**Changed**
+- `src/lib/chat.ts`: added `groupSources` (one entry per document, rank order, deduped headings) with 2 tests (25 total).
+- `src/components/Chat.tsx`: assistant messages now show "Fonti consultate" with one line per document (link to `source_url` when present, plus the section headings).
+- Marked F2 done in the RAG plan; Phase F complete. `tsc --noEmit`, ESLint and tests pass.
+
+**Notes**
+- Not tried in a browser (sources arrive in the stream metadata and render client-side).
+- Sources are always the top-4 retrieved chunks, so an off-topic question that gets the fallback reply still lists sources. Fix with the similarity threshold in G2 (send no sources below it).
+- `source_url` values are `example.com` placeholders.
+
+**Next**
+- [ ] G1: manual validation in the browser (direct, off-topic and ambiguous questions); decide on markdown rendering.

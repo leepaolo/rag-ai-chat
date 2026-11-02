@@ -27,6 +27,29 @@ export function lastUserText(messages: UIMessage[]): string | null {
   return text || null;
 }
 
+export type GroupedSource = {
+  documentId: string;
+  title: string;
+  sourceUrl: string | null;
+  headings: string[];
+};
+
+/** Collapses chunk-level sources into one entry per document, keeping rank order. */
+export function groupSources(sources: ChatSource[]): GroupedSource[] {
+  const byDocument = new Map<string, GroupedSource>();
+  for (const source of sources) {
+    const group = byDocument.get(source.documentId) ?? {
+      documentId: source.documentId,
+      title: source.title,
+      sourceUrl: source.sourceUrl,
+      headings: [],
+    };
+    if (source.heading && !group.headings.includes(source.heading)) group.headings.push(source.heading);
+    byDocument.set(source.documentId, group);
+  }
+  return [...byDocument.values()];
+}
+
 /** One entry per retrieved chunk, in rank order, for citations in the UI. */
 export function toSources(results: VectorStoreResult[]): ChatSource[] {
   return results.map((result) => ({
