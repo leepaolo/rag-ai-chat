@@ -97,3 +97,15 @@ Format:
 
 **Next**
 - [ ] A3: `.env.example`.
+
+## 2026-11-02: RAG plan step A3 (env template)
+
+**Changed**
+- Env template file added (created by the user, since writes to it are denied to Claude), plus a gitignore exception so the broad env-file pattern does not ignore it.
+- Marked A3 done in the RAG plan; Phase A complete.
+
+**Why**
+- Document the config keys needed by the RAG pipeline without committing real values.
+
+**Next**
+- [ ] B1: Drizzle SQLite schema.
