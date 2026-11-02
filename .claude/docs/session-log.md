@@ -109,3 +109,12 @@ Format:
 
 **Next**
 - [ ] B1: Drizzle SQLite schema.
+
+## 2026-11-02: RAG plan step B1 (Drizzle SQLite schema)
+
+**Changed**
+- Added `src/db/schema.sqlite.ts` with `documents` (frontmatter fields plus title) and `chunks` (document FK with cascade delete, position, heading, content, JSON embedding).
+- Marked B1 done in the RAG plan. `tsc --noEmit` and ESLint pass.
+
+**Next**
+- [ ] B2: db client factory (`src/db/client.ts`); needs `pnpm approve-builds` for `better-sqlite3` first.

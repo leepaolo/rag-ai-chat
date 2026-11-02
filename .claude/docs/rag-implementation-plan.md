@@ -54,7 +54,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
 
 ## Fase B — Schema dati e knowledge base
 
-- [ ] **B1. Schema Drizzle (SQLite)**
+- [x] **B1. Schema Drizzle (SQLite)**
       `src/db/schema.sqlite.ts` con tabelle `documents` e `chunks` (embedding come blob/JSON).
       Commit: `feat: add drizzle schema for documents and chunks (sqlite)`
 
