@@ -62,7 +62,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/db/client.ts`: istanzia il client in base a `VECTOR_STORE_DRIVER`.
       Commit: `feat: add db client factory`
 
-- [ ] **B3. Prime FAQ di test**
+- [x] **B3. Prime FAQ di test**
       Scrivere 8-10 file `.md` reali in `knowledge/` (es. sinistri auto, tempi di rimborso, disdetta polizza, documenti per preventivo), con frontmatter (`id`, `category`, `product`, `last_updated`, `source_url`).
       Commit: `content: add initial insurance FAQ knowledge base`
 

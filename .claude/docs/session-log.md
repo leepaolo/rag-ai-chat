@@ -129,3 +129,16 @@ Format:
 **Next**
 - [ ] Tables are not created anywhere yet; decide how before C2 (e.g. `drizzle-kit push` with a `drizzle.config.ts`).
 - [ ] B3: first FAQ markdown files.
+
+## 2026-11-02: RAG plan step B3 (initial FAQ knowledge base)
+
+**Changed**
+- Added 10 Italian FAQ files in `knowledge/` (categories: sinistri, rimborsi, polizza, preventivo; products: auto, casa), each with frontmatter, an H1 title and `##` sections.
+- Marked B3 done in the RAG plan; Phase B complete.
+
+**Why**
+- Test content for chunking, ingestion and retrieval.
+
+**Next**
+- [ ] The FAQ content is invented and `source_url` values are `example.com` placeholders: replace with real content and URLs before production.
+- [ ] C1: chunking logic (`src/lib/chunk.ts`).
