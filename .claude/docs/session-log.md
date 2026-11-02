@@ -177,3 +177,17 @@ Format:
 
 **Next**
 - [ ] C2: ingestion script (needs `OPENAI_API_KEY` for embeddings).
+
+## 2026-11-02: RAG plan step C2 (ingestion script)
+
+**Changed**
+- Added `src/lib/embed.ts` (`buildEmbeddingInput` = title + heading + content; `embedTexts` via AI SDK `embedMany` with OpenAI `text-embedding-3-small`) and `src/lib/embed.test.ts`.
+- Added `scripts/ingest.ts`: reads `knowledge/**/*.md`, chunks, embeds, then upserts documents and replaces each document's chunks in one transaction; documents removed from disk are deleted.
+- Added dev dependency `tsx`. Marked C2 done in the RAG plan. Tests, `tsc --noEmit` and ESLint pass.
+- The script has not been run yet (it calls the paid embeddings API); that is C3.
+
+**Notes**
+- The API key must live only in the local env file. The pre-commit secret scan caught it once in the tracked template; the template was restored before this commit.
+
+**Next**
+- [ ] C3: run the ingestion, verify the tables, add the `ingest` npm script.

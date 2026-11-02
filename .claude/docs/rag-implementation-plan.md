@@ -80,7 +80,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       `src/lib/chunk.ts`: parsing frontmatter con `gray-matter` + split del body per heading `##`.
       Commit: `feat: add markdown chunking logic`
 
-- [ ] **C2. Script di ingestion**
+- [x] **C2. Script di ingestion**
       `scripts/ingest.ts`: legge `knowledge/**/*.md`, chunka, chiama l'API di embedding, upsert su SQLite. Eseguibile con `pnpm tsx scripts/ingest.ts`.
       Commit: `feat: add ingestion script`
 
