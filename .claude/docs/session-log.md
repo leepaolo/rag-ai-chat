@@ -344,3 +344,15 @@ Format:
 **Notes**
 - Expected answers depend on the 10 invented FAQs in `knowledge/`; update the file when the real knowledge base replaces them.
 - Not committed yet.
+
+## 2026-11-02: local commands guide
+
+**Changed**
+- Added `.claude/docs/local-commands.md`: how to start the app, manage and inspect the SQLite DB (`db:push`, `ingest`, `db:studio`, `sqlite3`), run checks, troubleshoot, and run Postgres + pgvector locally with Docker to try the Phase H code before Neon.
+
+**Notes**
+- Decision still open for H2: `@neondatabase/serverless` does not talk to a plain local Postgres; local testing needs a standard driver such as `pg`.
+- Not committed yet.
+
+**Next**
+- [ ] Moving to Neon (Phase H) is postponed; the app keeps running on local SQLite.
