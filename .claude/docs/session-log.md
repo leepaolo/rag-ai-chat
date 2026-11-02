@@ -335,3 +335,12 @@ Format:
 
 **Next**
 - [ ] H1: Neon setup (external; needs the user to create the project and `DATABASE_URL`).
+
+## 2026-11-02: manual test checklist
+
+**Changed**
+- Added `.claude/docs/chat-test-questions.md`: checklist of questions for `/assistente` grouped as direct (per FAQ document, with expected facts and source), follow-ups (with risk level), noisy sources, and misleading sources (fallback, affine-but-uncovered, wrong product, mixed answers, links and injection), plus a results register.
+
+**Notes**
+- Expected answers depend on the 10 invented FAQs in `knowledge/`; update the file when the real knowledge base replaces them.
+- Not committed yet.
