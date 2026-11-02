@@ -90,7 +90,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
 
 ## Fase D — Retrieval
 
-- [ ] **D1. Interfaccia VectorStore**
+- [x] **D1. Interfaccia VectorStore**
       `src/lib/vector-store.ts`: interfaccia `VectorStore` (`query(embedding, topK, filter?)`).
       Commit: `feat: define VectorStore interface`
 

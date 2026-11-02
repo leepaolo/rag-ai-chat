@@ -204,3 +204,12 @@ Format:
 
 **Next**
 - [ ] D1: `VectorStore` interface.
+
+## 2026-11-02: RAG plan step D1 (VectorStore interface)
+
+**Changed**
+- Added `src/lib/vector-store.ts`: `VectorStore.query(embedding, topK, filter?)` returning `VectorStoreResult[]` (chunk text plus document title, category, product, `sourceUrl` and cosine `score`, best first); filter by `category` and/or `product`.
+- Marked D1 done in the RAG plan. Types only, so no unit test; `tsc --noEmit` and ESLint pass.
+
+**Next**
+- [ ] D2: SQLite implementation with cosine similarity (with unit tests).
