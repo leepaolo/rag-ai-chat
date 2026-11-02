@@ -43,7 +43,7 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
   Installare `ai`, `@ai-sdk/openai` (o provider scelto), `drizzle-orm`, `better-sqlite3`, `gray-matter`, `drizzle-kit` (dev), `@types/better-sqlite3` (dev).
   Commit: `chore: add RAG pipeline dependencies`
 
-- [ ] **A2. Struttura cartelle**
+- [x] **A2. Struttura cartelle**
   Creare `knowledge/` (vuota, con `.gitkeep`), `scripts/`, `src/db/`, `src/lib/`. Aggiungere `knowledge.db` e `*.db` a `.gitignore`.
   Commit: `chore: scaffold RAG folder structure`
 

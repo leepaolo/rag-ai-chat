@@ -43,3 +43,7 @@ next-env.d.ts
 # claude code (personal, not shared)
 .claude/settings.local.json
 CLAUDE.local.md
+
+# local SQLite knowledge store
+knowledge.db
+*.db

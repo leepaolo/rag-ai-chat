@@ -87,3 +87,13 @@ Format:
 **Next**
 - [ ] Run `pnpm approve-builds` for `better-sqlite3` (its native build script was skipped; needed before B2/C2 can open a DB).
 - [ ] A2: folder structure.
+
+## 2026-11-02: RAG plan step A2 (folder structure)
+
+**Changed**
+- Created `knowledge/`, `scripts/`, `src/db/`, `src/lib/` (each with `.gitkeep`).
+- `.gitignore`: added `knowledge.db` and `*.db`.
+- Marked A2 done in the RAG plan.
+
+**Next**
+- [ ] A3: `.env.example`.
