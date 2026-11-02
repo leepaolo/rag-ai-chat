@@ -152,3 +152,13 @@ Format:
 
 **Next**
 - [ ] C1: chunking logic (`src/lib/chunk.ts`); pick a test framework (Vitest proposed).
+
+## 2026-11-02: RAG plan step C0 (Vitest)
+
+**Changed**
+- Installed `vitest` 5.0.5; added `vitest.config.ts` (node env, `@/` alias, `src/**/*.test.ts`) and scripts `test` (`vitest run --passWithNoTests`) and `test:watch`.
+- Updated `.claude/rules/testing.md`; added C0 to the RAG plan. The pre-commit hook now runs `test` instead of the tsc + lint fallback.
+
+**Next**
+- [ ] C1: chunking logic with unit tests.
+- [ ] pnpm printed a peer-dependency warning on install; not investigated.
