@@ -142,3 +142,13 @@ Format:
 **Next**
 - [ ] The FAQ content is invented and `source_url` values are `example.com` placeholders: replace with real content and URLs before production.
 - [ ] C1: chunking logic (`src/lib/chunk.ts`).
+
+## 2026-11-02: RAG plan step B4 (drizzle config, table creation)
+
+**Changed**
+- Added `drizzle.config.ts` (sqlite, `knowledge.db`) and npm scripts `db:push` and `db:studio`; added B4 to the RAG plan as a sub-step between B3 and C.
+- Ran `pnpm db:push`: `knowledge.db` now has the empty `documents` and `chunks` tables (file is gitignored).
+- To inspect: `sqlite3 knowledge.db` or `pnpm db:studio`.
+
+**Next**
+- [ ] C1: chunking logic (`src/lib/chunk.ts`); pick a test framework (Vitest proposed).

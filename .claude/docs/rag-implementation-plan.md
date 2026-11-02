@@ -66,6 +66,10 @@ Altri accorgimenti per il costo, indipendenti dal modello scelto:
       Scrivere 8-10 file `.md` reali in `knowledge/` (es. sinistri auto, tempi di rimborso, disdetta polizza, documenti per preventivo), con frontmatter (`id`, `category`, `product`, `last_updated`, `source_url`).
       Commit: `content: add initial insurance FAQ knowledge base`
 
+- [x] **B4. Config Drizzle e creazione tabelle**
+      `drizzle.config.ts` (dialect sqlite) e script npm `db:push` / `db:studio`. `pnpm db:push` crea le tabelle in `knowledge.db`; `pnpm db:studio` le mostra nel browser.
+      Commit: `chore: add drizzle config and db push script`
+
 ## Fase C — Ingestion
 
 - [ ] **C1. Chunking**
