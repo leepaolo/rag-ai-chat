@@ -356,3 +356,17 @@ Format:
 
 **Next**
 - [ ] Moving to Neon (Phase H) is postponed; the app keeps running on local SQLite.
+
+## 2026-11-06: Playwright e2e suite
+
+**Changed**
+- Added `@playwright/test`, `playwright.config.ts`, `pnpm test:e2e`, and `e2e/` (page object, TC-11 dataset, 6 spec files for TC-01/04/05/06/08/09/11/12/13/14/15).
+- `.gitignore`: `/test-results/`, `/playwright-report/`.
+
+**Notes**
+- Only TC-06 and TC-08 were run (no paid calls apart from TC-08's single request); the rest hit OpenAI embeddings and Anthropic on every run.
+- Selectors use the `Domanda` label, the `Invia` button and the bubble classes `self-start`/`self-end`; no `data-testid` exists in `Chat.tsx`.
+- Not committed yet.
+
+**Next**
+- [ ] Run the full suite once and review TC-05/TC-12 heuristics; replace the TC-11 dataset with the "Domande di Test" sheet.

@@ -24,7 +24,7 @@ Una o più domande per ogni documento. La risposta deve essere corretta e le fon
 | | Domanda | Atteso | Fonte attesa |
 |---|---|---|---|
 | [ ] | Quanto tempo ho per denunciare un sinistro? | 3 giorni da quando ne sei venuto a conoscenza; denuncia tardiva può ridurre o escludere l'indennizzo | `sinistri-auto-denuncia` |
-| [ ] | Come si denuncia un incidente con l'auto? | Area clienti, email, numero verde; se due veicoli, modulo CAI | `sinistri-auto-denuncia` |
+| [ ] | Come si denuncia un incidente con l'auto? | Area clienti, email, numero verde; se due veicoli, modulo CID | `sinistri-auto-denuncia` |
 | [ ] | Cosa devo preparare per denunciare un sinistro? | Dati polizza, targa, data e luogo, descrizione, foto, dati testimoni | `sinistri-auto-denuncia` |
 | [ ] | Quando viene fatta la perizia? | Il perito contatta entro 5 giorni lavorativi | `sinistri-auto-perizia` |
 | [ ] | Posso scegliere io la carrozzeria? | Sì; con centro convenzionato la compagnia paga direttamente | `sinistri-auto-perizia` |

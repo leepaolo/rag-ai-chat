@@ -48,3 +48,7 @@ CLAUDE.local.md
 # local SQLite knowledge store
 knowledge.db
 *.db
+
+# playwright
+/test-results/
+/playwright-report/

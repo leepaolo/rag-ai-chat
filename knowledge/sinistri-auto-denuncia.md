@@ -14,7 +14,7 @@ Il sinistro va denunciato entro 3 giorni da quando ne sei venuto a conoscenza. U
 
 ## Come si denuncia
 
-Puoi denunciare il sinistro dall'area clienti, via email all'indirizzo indicato in polizza o chiamando il numero verde sinistri. Se i veicoli coinvolti sono due, compila insieme all'altra parte il modulo di constatazione amichevole (CAI).
+Puoi denunciare il sinistro dall'area clienti, via email all'indirizzo indicato in polizza o chiamando il numero verde sinistri. Se i veicoli coinvolti sono due, compila insieme all'altra parte il modulo di constatazione amichevole (CID).
 
 ## Cosa preparare
 
