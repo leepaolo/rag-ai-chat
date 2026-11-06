@@ -370,3 +370,13 @@ Format:
 
 **Next**
 - [ ] Run the full suite once and review TC-05/TC-12 heuristics; replace the TC-11 dataset with the "Domande di Test" sheet.
+
+## 2026-11-06: QA esplorativo (skill rag-ai-chat-qa)
+
+**Changed**
+- `e2e/fixtures/qa-tracker-rag-ai-chat.xlsx`: TC-17..TC-21 compilati (parafrasi, auto vs casa, out-of-domain finanza, nuova injection "SYSTEM manutenzione", invio vuoto) e 5 righe aggiunte in "Domande di Test". Tutti Pass, nessun nuovo bug.
+
+**Notes**
+- Formule di Riepilogo non ricalcolate (LibreOffice assente): si aggiornano all'apertura in Excel.
+- Osservazione: la parafrasi TC-17 cita anche la fonte "Documenti necessari per un preventivo auto" (rumore nel top-K).
+- Non committato.
